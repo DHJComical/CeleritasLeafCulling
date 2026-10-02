@@ -34,8 +34,8 @@ public class CeleritasLeafCulling
         }
         if (Loader.isModLoaded("actinium")) {
             try {
-                Class.forName("org.embeddedt.embeddium.api.OptionGUIConstructionEvent");
-                org.embeddedt.embeddium.api.OptionGUIConstructionEvent.BUS.addListener(ActiniumOptionsListener::onActiniumOptionsConstruct);
+                Class.forName("dhj.embeddedt.embeddium.api.OptionGUIConstructionEvent");
+                dhj.embeddedt.embeddium.api.OptionGUIConstructionEvent.BUS.addListener(ActiniumOptionsListener::onActiniumOptionsConstruct);
                 LOGGER.info("Actinium Celeritas detected, setting fastBlockRenderer property to true");
                 System.setProperty("celeritas.useVintageFastBlockRenderer", "true");
             } catch (Throwable t) {

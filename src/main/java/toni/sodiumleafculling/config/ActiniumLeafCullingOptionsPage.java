@@ -1,14 +1,14 @@
 package toni.sodiumleafculling.config;
 
 import com.google.common.collect.ImmutableList;
-import org.embeddedt.embeddium.api.options.OptionIdentifier;
-import org.embeddedt.embeddium.api.options.control.CyclingControl;
-import org.embeddedt.embeddium.api.options.structure.OptionFlag;
-import org.embeddedt.embeddium.api.options.structure.OptionGroup;
-import org.embeddedt.embeddium.api.options.structure.OptionImpl;
-import org.embeddedt.embeddium.api.options.structure.OptionPage;
-import org.embeddedt.embeddium.impl.gui.framework.TextComponent;
-import org.embeddedt.embeddium.impl.gui.framework.TextFormattingStyle;
+import dhj.embeddedt.embeddium.api.options.OptionIdentifier;
+import dhj.embeddedt.embeddium.api.options.control.CyclingControl;
+import dhj.embeddedt.embeddium.api.options.structure.OptionFlag;
+import dhj.embeddedt.embeddium.api.options.structure.OptionGroup;
+import dhj.embeddedt.embeddium.api.options.structure.OptionImpl;
+import dhj.embeddedt.embeddium.api.options.structure.OptionPage;
+import dhj.embeddedt.embeddium.impl.gui.framework.TextComponent;
+import dhj.embeddedt.embeddium.impl.gui.framework.TextFormattingStyle;
 import toni.sodiumleafculling.LeafCullingMode;
 
 import java.util.ArrayList;

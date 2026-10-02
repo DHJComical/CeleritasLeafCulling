@@ -10,10 +10,10 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import org.embeddedt.embeddium.impl.model.light.LightPipeline;
-import org.embeddedt.embeddium.impl.render.chunk.compile.ChunkBuildBuffers;
-import org.embeddedt.embeddium.impl.render.chunk.compile.buffers.ChunkModelBuilder;
-import org.embeddedt.embeddium.impl.render.chunk.terrain.material.Material;
+import dhj.embeddedt.embeddium.impl.model.light.LightPipeline;
+import dhj.embeddedt.embeddium.impl.render.chunk.compile.ChunkBuildBuffers;
+import dhj.embeddedt.embeddium.impl.render.chunk.compile.buffers.ChunkModelBuilder;
+import dhj.embeddedt.embeddium.impl.render.chunk.terrain.material.Material;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -33,15 +33,13 @@ public abstract class VintageBlockRendererMixin {
     private ActiniumBlockAccess currentBlockAccess;
 
     @Shadow
-    protected abstract void renderQuadList(ChunkModelBuilder defaultBuffer, ChunkBuildBuffers buffers, Material material, BlockPos pos, EnumFacing cullFace,
-                                           LightPipeline lighter, net.minecraft.client.renderer.color.IBlockColor colorProvider, Vec3d offset, List<BakedQuad> quads
-    );
+    protected abstract void renderQuadList(ChunkModelBuilder defaultBuffer, ChunkBuildBuffers buffers, Material material, BlockPos pos, EnumFacing cullFace,LightPipeline lighter, IBlockColor colorProvider, Vec3d offset, List<BakedQuad> quads);
 
     @Redirect(
             method = "renderBlock(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/util/math/BlockPos;Lcom/dhj/actinium/world/cloned/ActiniumBlockAccess;Lnet/minecraft/util/BlockRenderLayer;Z)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lcom/dhj/actinium/render/terrain/compile/pipeline/VintageBlockRenderer;renderQuadList(Lorg/embeddedt/embeddium/impl/render/chunk/compile/buffers/ChunkModelBuilder;Lorg/embeddedt/embeddium/impl/render/chunk/compile/ChunkBuildBuffers;Lorg/embeddedt/embeddium/impl/render/chunk/terrain/material/Material;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lorg/embeddedt/embeddium/impl/model/light/LightPipeline;Lnet/minecraft/client/renderer/color/IBlockColor;Lnet/minecraft/util/math/Vec3d;Ljava/util/List;)V"
+                    target = "Lcom/dhj/actinium/render/terrain/compile/pipeline/VintageBlockRenderer;renderQuadList(Ldhj/embeddedt/embeddium/impl/render/chunk/compile/buffers/ChunkModelBuilder;Ldhj/embeddedt/embeddium/impl/render/chunk/compile/ChunkBuildBuffers;Ldhj/embeddedt/embeddium/impl/render/chunk/terrain/material/Material;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Ldhj/embeddedt/embeddium/impl/model/light/LightPipeline;Lnet/minecraft/client/renderer/color/IBlockColor;Lnet/minecraft/util/math/Vec3d;Ljava/util/List;)V"
             )
     )
     private void redirect$renderQuadList(VintageBlockRenderer instance, ChunkModelBuilder defaultBuffer, ChunkBuildBuffers buffers, Material material, BlockPos pos,
@@ -51,7 +49,6 @@ public abstract class VintageBlockRendererMixin {
             if (LeafCulling.surroundedByLeaves(currentBlockAccess, pos) && isSolid) {
                 Material solidMaterial = buffers.getRenderPassConfiguration().getMaterialForRenderType(BlockRenderLayer.SOLID);
                 ChunkModelBuilder solidBuffer = buffers.get(solidMaterial);
-
                 this.renderQuadList(solidBuffer, buffers, solidMaterial, pos, cullFace, lighter, colorProvider, offset, quads);
 
                 return;

@@ -1,7 +1,7 @@
 package toni.sodiumleafculling.config;
 
 import net.minecraftforge.common.config.ConfigManager;
-import org.embeddedt.embeddium.api.options.structure.OptionStorage;
+import dhj.embeddedt.embeddium.api.options.structure.OptionStorage;
 
 public class ActiniumLeafCullingOptionsStorage implements OptionStorage<LeafCullingConfig> {
 
