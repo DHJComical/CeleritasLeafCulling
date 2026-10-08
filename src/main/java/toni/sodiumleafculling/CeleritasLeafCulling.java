@@ -52,6 +52,7 @@ public class CeleritasLeafCulling
     public void preInit(FMLPreInitializationEvent event) {
         if (event.getSide().isClient()) {
             MinecraftForge.EVENT_BUS.register(new ConfigEventHandler());
+            MinecraftForge.EVENT_BUS.register(new OpaqueLeafFill());
         }
     }
 }
