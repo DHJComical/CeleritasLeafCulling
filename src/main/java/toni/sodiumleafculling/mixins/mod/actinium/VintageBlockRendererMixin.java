@@ -20,6 +20,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import toni.sodiumleafculling.LeafCulling;
 import toni.sodiumleafculling.LeafCullingMode;
+import toni.sodiumleafculling.OpaqueLeafFill;
+import toni.sodiumleafculling.ShellLightPipeline;
 import toni.sodiumleafculling.config.LeafCullingConfig;
 
 import java.util.List;
@@ -49,7 +51,8 @@ public abstract class VintageBlockRendererMixin {
             if (LeafCulling.surroundedByLeaves(currentBlockAccess, pos) && isSolid) {
                 Material solidMaterial = buffers.getRenderPassConfiguration().getMaterialForRenderType(BlockRenderLayer.SOLID);
                 ChunkModelBuilder solidBuffer = buffers.get(solidMaterial);
-                this.renderQuadList(solidBuffer, buffers, solidMaterial, pos, cullFace, lighter, colorProvider, offset, quads);
+                this.renderQuadList(solidBuffer, buffers, solidMaterial, pos, cullFace,
+                        new ShellLightPipeline(lighter), colorProvider, offset, OpaqueLeafFill.makeOpaqueFill(quads));
 
                 return;
             }
